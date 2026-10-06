@@ -365,3 +365,28 @@ body{
     overflow:visible !important;
   }
 }
+
+
+/* mobile hero typography: keep every headline line inside the viewport */
+@media(max-width:600px){
+  .opening h1{
+    font-size:11vw !important;
+    line-height:.82 !important;
+    letter-spacing:-.07em !important;
+    width:100% !important;
+    max-width:100% !important;
+  }
+
+  .opening h1 span{
+    display:inline-block;
+    max-width:100%;
+  }
+
+  .opening h1 em{
+    display:inline-block;
+    font-size:.78em !important;
+    letter-spacing:-.06em !important;
+    transform:translateX(-1px);
+    max-width:100%;
+  }
+}
