@@ -88,3 +88,12 @@ if (object && stage && matchMedia('(pointer:fine)').matches) {
 }
 
 })();
+
+/* Keep Safari's horizontal scroll position pinned to the page edge. */
+if (window.matchMedia('(max-width: 600px)').matches) {
+  const lockHorizontalScroll = () => {
+    if (window.scrollX !== 0) window.scrollTo(0, window.scrollY);
+  };
+  window.addEventListener('scroll', lockHorizontalScroll, {passive:true});
+  window.addEventListener('resize', lockHorizontalScroll, {passive:true});
+}
