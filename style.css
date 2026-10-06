@@ -158,3 +158,73 @@ footer{
     max-width:calc(100vw - 20px);
   }
 }
+
+
+/* final mobile overflow fix */
+html,
+body{
+  width:100%;
+  max-width:100%;
+  overflow-x:hidden !important;
+}
+#top{
+  width:100%;
+  max-width:100%;
+  overflow-x:hidden;
+}
+@media(max-width:600px){
+  .opening{
+    width:100%;
+    max-width:100%;
+    min-width:0;
+    overflow-x:hidden;
+    overflow-y:visible;
+    display:block;
+    padding-left:17px;
+    padding-right:17px;
+  }
+  .opening-main{
+    width:100%;
+    max-width:100%;
+    min-width:0;
+    overflow:visible;
+  }
+  .opening h1{
+    width:100%;
+    max-width:100%;
+    min-width:0;
+    font-size:clamp(58px,13.5vw,92px);
+    line-height:.78;
+    letter-spacing:-.09em;
+    white-space:normal;
+    overflow-wrap:normal;
+  }
+  .opening-bottom{
+    width:100%;
+    max-width:100%;
+  }
+  .opening-object{
+    width:320px;
+    max-width:none;
+    right:-45px;
+  }
+  .manifesto-strip{
+    width:100%;
+    max-width:100%;
+  }
+  .archive,
+  .idea,
+  .method{
+    width:100%;
+    max-width:100%;
+    min-width:0;
+    overflow-x:hidden;
+  }
+  .archive-head h2,
+  .method h2,
+  .idea h2,
+  .last-call h2{
+    max-width:100%;
+    font-size:clamp(58px,16vw,105px);
+  }
+}
