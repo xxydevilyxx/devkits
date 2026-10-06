@@ -33,8 +33,8 @@ body{transition:background-color .2s ease}
 .intro-word{font-size:clamp(150px,28vw,430px);font-weight:700;letter-spacing:-.14em;line-height:.7;color:var(--acid);transform:scale(1.35);filter:blur(22px);opacity:0;animation:introWord 1.45s cubic-bezier(.16,1,.3,1) .05s forwards}
 .intro-line{position:absolute;width:0;height:1px;background:var(--acid);left:0;top:50%;animation:introLine 1.1s cubic-bezier(.77,0,.18,1) .25s forwards}
 .intro-status{position:absolute;bottom:30px;left:30px;font:9px "DM Mono",monospace;color:#777;letter-spacing:.1em;opacity:0;animation:introStatus .7s ease .45s forwards}
-body.is-booting>main,body.is-booting>header,body.is-booting>footer{opacity:0;filter:blur(22px);transform:scale(1.055);transform-origin:50% 40%}
-body.is-ready>main,body.is-ready>header,body.is-ready>footer{opacity:1;filter:blur(0);transform:scale(1);transition:opacity 1.2s cubic-bezier(.16,1,.3,1),filter 1.25s cubic-bezier(.16,1,.3,1),transform 1.35s cubic-bezier(.16,1,.3,1)}
+body.is-booting>main,body.is-booting>header,body.is-booting>footer{opacity:0;filter:blur(34px);transform:scale(1.08);transform-origin:50% 40%}
+body.is-ready>main,body.is-ready>header,body.is-ready>footer{opacity:1;filter:blur(0);transform:scale(1);transition:opacity 1.35s cubic-bezier(.16,1,.3,1),filter 1.55s cubic-bezier(.16,1,.3,1),transform 1.65s cubic-bezier(.16,1,.3,1)}
 body.is-ready .page-intro{opacity:0;visibility:hidden;pointer-events:none}
 @keyframes introWord{0%{opacity:0;transform:scale(1.35);filter:blur(22px)}45%{opacity:1;filter:blur(5px)}100%{opacity:1;transform:scale(1);filter:blur(0)}}
 @keyframes introLine{0%{width:0;opacity:0}30%{opacity:1}100%{width:100%;opacity:.7}}
@@ -46,6 +46,6 @@ body.is-ready .page-intro{opacity:0;visibility:hidden;pointer-events:none}
 }
 
 /* scroll reveal: blur + depth + soft mask */
-.reveal{opacity:0;transform:translate3d(0,70px,0) scale(.965);filter:blur(16px);clip-path:inset(8% 0 0 0);transition:opacity .95s cubic-bezier(.16,1,.3,1),transform 1.05s cubic-bezier(.16,1,.3,1),filter 1.05s cubic-bezier(.16,1,.3,1),clip-path 1.05s cubic-bezier(.16,1,.3,1)}
-.reveal.visible{opacity:1;transform:translate3d(0,0,0) scale(1);filter:blur(0);clip-path:inset(0 0 0 0)}
+.reveal{opacity:0;transform:translate3d(0,90px,0) scale(.94);filter:blur(28px) brightness(.7);clip-path:inset(10% 0 0 0);will-change:opacity,transform,filter,clip-path;transition:opacity 1.15s cubic-bezier(.16,1,.3,1),transform 1.25s cubic-bezier(.16,1,.3,1),filter 1.35s cubic-bezier(.16,1,.3,1),clip-path 1.25s cubic-bezier(.16,1,.3,1)}
+.reveal.visible{opacity:1;transform:translate3d(0,0,0) scale(1);filter:blur(0) brightness(1);clip-path:inset(0 0 0 0)}
 @media(prefers-reduced-motion:reduce){.reveal,.reveal.visible{opacity:1;transform:none;filter:none;clip-path:none;transition:none}}
