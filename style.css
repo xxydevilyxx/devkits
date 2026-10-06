@@ -433,3 +433,37 @@ body{
     }
   }
 }
+
+
+/* blur completely disabled */
+.page-intro,
+.intro-word,
+.reveal,
+.reveal.visible,
+.reveal.revealed,
+html.cinematic-ready .reveal,
+html.cinematic-ready .reveal.revealed{
+  filter:none !important;
+  backdrop-filter:none !important;
+  -webkit-filter:none !important;
+}
+
+body.is-booting>main,
+body.is-booting>header,
+body.is-booting>footer,
+body.is-ready>main,
+body.is-ready>header,
+body.is-ready>footer{
+  filter:none !important;
+}
+
+@media(max-width:600px){
+  html.cinematic-ready .reveal,
+  html.cinematic-ready .reveal.revealed{
+    filter:none !important;
+    transform:none !important;
+    opacity:1 !important;
+    visibility:visible !important;
+    animation:none !important;
+  }
+}
