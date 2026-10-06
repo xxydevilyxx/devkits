@@ -1,8 +1,11 @@
 const boot = () => {
-  requestAnimationFrame(() => {
-    document.body.classList.remove('is-booting');
-    document.body.classList.add('is-ready');
-  });
+  // Keep the intro visible long enough for the blur/zoom to read clearly.
+  window.setTimeout(() => {
+    requestAnimationFrame(() => {
+      document.body.classList.remove('is-booting');
+      document.body.classList.add('is-ready');
+    });
+  }, 900);
 };
 if (document.readyState === 'loading') {
   window.addEventListener('load', boot, { once: true });
@@ -17,9 +20,9 @@ const observer = new IntersectionObserver((entries) => {
       observer.unobserve(entry.target);
     }
   });
-}, {threshold:0.1});
+}, {threshold:0.02, rootMargin:'0px 0px -8% 0px'});
 document.querySelectorAll('.reveal').forEach((el,i) => {
-  el.style.transitionDelay = Math.min(i * 45, 240) + 'ms';
+  el.style.transitionDelay = Math.min(i * 70, 280) + 'ms';
   observer.observe(el);
 });
 
