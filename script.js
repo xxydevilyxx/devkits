@@ -1,34 +1,4 @@
 (() => {
-  // Prevent Safari from restoring a horizontal scroll offset.
-  if (history.scrollRestoration) history.scrollRestoration = 'manual';
-  window.scrollTo(0, 0);
-
-  const boot = () => {
-  document.documentElement.classList.add('cinematic-ready');
-  document.body.classList.remove('is-booting');
-  document.body.classList.add('is-ready');
-};
-
-if (document.readyState === 'loading') {
-  window.addEventListener('load', boot, { once: true });
-} else {
-  boot();
-}
-
-const revealElements = document.querySelectorAll('.reveal');
-
-const revealObserver = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    if (!entry.isIntersecting) return;
-    entry.target.classList.add('revealed');
-    revealObserver.unobserve(entry.target);
-  });
-}, { threshold: 0.08, rootMargin: '0px 0px -12% 0px' });
-
-revealElements.forEach((el, i) => {
-  el.style.animationDelay = Math.min(i * 80, 320) + 'ms';
-  revealObserver.observe(el);
-});
 
 const filters = document.querySelectorAll('.filter');
 const specimens = document.querySelectorAll('.specimen');
