@@ -1,4 +1,9 @@
-const boot = () => {
+(() => {
+  // Prevent Safari from restoring a horizontal scroll offset.
+  if (history.scrollRestoration) history.scrollRestoration = 'manual';
+  window.scrollTo(0, 0);
+
+  const boot = () => {
   document.documentElement.classList.add('cinematic-ready');
 
   // Keep the opening state visible long enough to make the blur/zoom unmistakable.
@@ -81,3 +86,5 @@ if (object && stage && matchMedia('(pointer:fine)').matches) {
   });
   stage.addEventListener('pointerleave', () => object.style.transform = 'rotate(8deg)');
 }
+
+})();
