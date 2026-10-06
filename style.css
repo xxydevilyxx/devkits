@@ -320,3 +320,48 @@ body{
     overflow-x:hidden !important;
   }
 }
+
+
+/* iOS Safari: never let the page shell itself create transformed overflow */
+@media(max-width:900px){
+  body.is-booting>main,
+  body.is-booting>header,
+  body.is-booting>footer,
+  body.is-ready>main,
+  body.is-ready>header,
+  body.is-ready>footer{
+    transform:none !important;
+  }
+}
+@media(max-width:600px){
+  html,
+  body{
+    width:100% !important;
+    max-width:100% !important;
+    min-width:0 !important;
+    overflow-x:clip !important;
+    overscroll-behavior-x:none !important;
+  }
+
+  body{
+    position:relative;
+  }
+
+  main#top{
+    width:100% !important;
+    max-width:100% !important;
+    min-width:0 !important;
+    overflow-x:clip !important;
+  }
+
+  .opening{
+    width:100% !important;
+    max-width:100% !important;
+    overflow-x:clip !important;
+  }
+
+  .opening h1{
+    max-width:100% !important;
+    overflow:visible !important;
+  }
+}
