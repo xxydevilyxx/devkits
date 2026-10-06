@@ -2,21 +2,19 @@ const revealItems = document.querySelectorAll('.reveal');
 
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
-    if (entry.isIntersecting) {
-      entry.target.classList.add('visible');
-      observer.unobserve(entry.target);
-    }
+    if (!entry.isIntersecting) return;
+    entry.target.classList.add('visible');
+    observer.unobserve(entry.target);
   });
-}, { threshold: 0.12 });
+}, { threshold: 0.1 });
 
 revealItems.forEach((item, index) => {
   item.style.transitionDelay = `${Math.min(index * 45, 240)}ms`;
   observer.observe(item);
 });
 
-// Template filter
 const filters = document.querySelectorAll('.filter');
-const cards = document.querySelectorAll('.template-card');
+const rows = document.querySelectorAll('.template-row');
 
 filters.forEach((filter) => {
   filter.addEventListener('click', () => {
@@ -24,50 +22,53 @@ filters.forEach((filter) => {
     filter.classList.add('active');
 
     const category = filter.dataset.filter;
-    cards.forEach((card) => {
-      const match = category === 'all' || card.dataset.category === category;
-      card.classList.toggle('hidden', !match);
+    rows.forEach((row) => {
+      const match = category === 'all' || row.dataset.category === category;
+      row.classList.toggle('hidden', !match);
     });
   });
 });
 
-// Mouse-follow glow on desktop
-const glow = document.querySelector('.cursor-glow');
-window.addEventListener('pointermove', (event) => {
-  if (!glow) return;
-  glow.style.left = `${event.clientX}px`;
-  glow.style.top = `${event.clientY}px`;
+const topbar = document.querySelector('.topbar');
+const menuToggle = document.querySelector('.menu-toggle');
+menuToggle?.addEventListener('click', () => {
+  const open = topbar.classList.toggle('nav-open');
+  menuToggle.setAttribute('aria-expanded', String(open));
 });
 
-// Subtle parallax on the hero code card
-const visual = document.querySelector('.hero-visual');
-const codeCard = document.querySelector('.code-card');
+document.querySelectorAll('.main-nav a').forEach((link) => {
+  link.addEventListener('click', () => {
+    topbar.classList.remove('nav-open');
+    menuToggle?.setAttribute('aria-expanded', 'false');
+  });
+});
 
-if (visual && codeCard && window.matchMedia('(pointer:fine)').matches) {
-  visual.addEventListener('pointermove', (event) => {
-    const rect = visual.getBoundingClientRect();
+const orb = document.querySelector('.cursor-orb');
+window.addEventListener('pointermove', (event) => {
+  if (!orb) return;
+  orb.style.left = `${event.clientX}px`;
+  orb.style.top = `${event.clientY}px`;
+});
+
+const heroVisual = document.querySelector('.hero-visual');
+const frontCard = document.querySelector('.card-front');
+if (heroVisual && frontCard && window.matchMedia('(pointer:fine)').matches) {
+  heroVisual.addEventListener('pointermove', (event) => {
+    const rect = heroVisual.getBoundingClientRect();
     const x = (event.clientX - rect.left) / rect.width - 0.5;
     const y = (event.clientY - rect.top) / rect.height - 0.5;
-    codeCard.style.transform = `rotate(-2deg) perspective(900px) rotateY(${x * 5}deg) rotateX(${y * -5}deg)`;
+    frontCard.style.transform = `rotate(-7deg) perspective(900px) rotateY(${x * 7}deg) rotateX(${y * -7}deg)`;
   });
-
-  visual.addEventListener('pointerleave', () => {
-    codeCard.style.transform = 'rotate(-3deg)';
+  heroVisual.addEventListener('pointerleave', () => {
+    frontCard.style.transform = 'rotate(-7deg)';
   });
 }
 
-// Mobile navigation
-const menu = document.querySelector('.menu-toggle');
-const navLinks = document.querySelector('.nav-links');
-
-menu?.addEventListener('click', () => {
-  const open = navLinks.classList.toggle('mobile-open');
-  menu.textContent = open ? '×' : '☰';
-});
-
-document.querySelectorAll('.nav-links a').forEach((link) => {
-  link.addEventListener('click', () => {
-    navLinks.classList.remove('mobile-open');
-    if (menu) menu.textContent = '☰';
+document.querySelectorAll('a[href^="#"]').forEach((link) => {
+  link.addEventListener('click', (event) => {
+    const target = document.querySelector(link.getAttribute('href'));
+    if (!target) return;
+    event.preventDefault();
+    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
   });
 });
