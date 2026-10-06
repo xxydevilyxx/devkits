@@ -91,3 +91,70 @@ html.cinematic-ready .page-intro{
     opacity:1;visibility:visible;transform:none;filter:none;animation:none;
   }
 }
+
+
+/* mobile viewport lock */
+html{
+  width:100%;
+  max-width:100%;
+  overflow-x:clip;
+}
+body{
+  width:100%;
+  max-width:100%;
+  overflow-x:clip;
+}
+main,
+section,
+header,
+footer{
+  max-width:100%;
+}
+.opening,
+.opening-main,
+.archive,
+.archive-head,
+.method,
+.method-head,
+.specimen,
+.idea,
+.last-call{
+  min-width:0;
+}
+.opening-main{
+  overflow:visible;
+}
+@media(max-width:600px){
+  .opening{
+    width:100%;
+    max-width:100vw;
+    overflow:hidden;
+  }
+  .opening-main{
+    width:100%;
+    max-width:100%;
+    min-width:0;
+  }
+  .opening h1{
+    max-width:100%;
+    overflow-wrap:normal;
+    word-break:normal;
+  }
+  .opening-object{
+    max-width:100vw;
+    overflow:visible;
+    pointer-events:none;
+  }
+  .object-card{
+    max-width:350px;
+  }
+  .archive-head>div,
+  .specimen-info,
+  .method-head>h2,
+  .idea-copy{
+    min-width:0;
+  }
+  .last-call{
+    max-width:calc(100vw - 20px);
+  }
+}
