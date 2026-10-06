@@ -339,3 +339,64 @@ body{
     contain:paint;
   }
 }
+
+
+/* FINAL iOS SAFETY LAYER */
+@media (max-width:600px){
+  html{
+    overflow-x:hidden !important;
+    overscroll-behavior-x:none !important;
+  }
+
+  body{
+    overflow-x:hidden !important;
+    overscroll-behavior-x:none !important;
+  }
+
+  /* Animated decorative layers must never participate in the page bounds. */
+  .grain,
+  .page-intro,
+  .intro-grid,
+  .intro-line,
+  .orbit,
+  .object-note{
+    pointer-events:none;
+  }
+
+  .opening{
+    overflow:hidden !important;
+    clip-path:inset(0);
+  }
+
+  .opening-object{
+    overflow:hidden !important;
+    clip-path:inset(0);
+  }
+
+  .object-card{
+    max-width:100%;
+  }
+
+  /* Safari can expand the scrollable area from transformed children. */
+  .reveal,
+  .reveal.revealed{
+    transform:none !important;
+  }
+
+  .intro-grid{
+    transform:none !important;
+  }
+
+  .intro-word{
+    transform:none !important;
+  }
+
+  .orbit{
+    animation:none !important;
+  }
+
+  .last-call,
+  .idea{
+    overflow:hidden !important;
+  }
+}
