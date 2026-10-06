@@ -1,74 +1,16 @@
-const revealItems = document.querySelectorAll('.reveal');
-
-const observer = new IntersectionObserver((entries) => {
-  entries.forEach((entry) => {
-    if (!entry.isIntersecting) return;
-    entry.target.classList.add('visible');
-    observer.unobserve(entry.target);
-  });
-}, { threshold: 0.1 });
-
-revealItems.forEach((item, index) => {
-  item.style.transitionDelay = `${Math.min(index * 45, 240)}ms`;
-  observer.observe(item);
-});
-
-const filters = document.querySelectorAll('.filter');
-const rows = document.querySelectorAll('.template-row');
-
-filters.forEach((filter) => {
-  filter.addEventListener('click', () => {
-    filters.forEach((item) => item.classList.remove('active'));
-    filter.classList.add('active');
-
-    const category = filter.dataset.filter;
-    rows.forEach((row) => {
-      const match = category === 'all' || row.dataset.category === category;
-      row.classList.toggle('hidden', !match);
-    });
-  });
-});
-
-const topbar = document.querySelector('.topbar');
-const menuToggle = document.querySelector('.menu-toggle');
-menuToggle?.addEventListener('click', () => {
-  const open = topbar.classList.toggle('nav-open');
-  menuToggle.setAttribute('aria-expanded', String(open));
-});
-
-document.querySelectorAll('.main-nav a').forEach((link) => {
-  link.addEventListener('click', () => {
-    topbar.classList.remove('nav-open');
-    menuToggle?.setAttribute('aria-expanded', 'false');
-  });
-});
-
-const orb = document.querySelector('.cursor-orb');
-window.addEventListener('pointermove', (event) => {
-  if (!orb) return;
-  orb.style.left = `${event.clientX}px`;
-  orb.style.top = `${event.clientY}px`;
-});
-
-const heroVisual = document.querySelector('.hero-visual');
-const frontCard = document.querySelector('.card-front');
-if (heroVisual && frontCard && window.matchMedia('(pointer:fine)').matches) {
-  heroVisual.addEventListener('pointermove', (event) => {
-    const rect = heroVisual.getBoundingClientRect();
-    const x = (event.clientX - rect.left) / rect.width - 0.5;
-    const y = (event.clientY - rect.top) / rect.height - 0.5;
-    frontCard.style.transform = `rotate(-7deg) perspective(900px) rotateY(${x * 7}deg) rotateX(${y * -7}deg)`;
-  });
-  heroVisual.addEventListener('pointerleave', () => {
-    frontCard.style.transform = 'rotate(-7deg)';
-  });
+const reveal=document.querySelectorAll('.opening-top,.opening-title,.stage,.opening-bottom,.bar,.collection-head,.filters,.product,.idea-grid,.how>h2,.steps>div,.end');
+const observer=new IntersectionObserver(entries=>{entries.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');observer.unobserve(e.target)}})},{threshold:.08});
+reveal.forEach((el,i)=>{el.style.transitionDelay=Math.min(i*35,220)+'ms';observer.observe(el)});
+const filters=document.querySelectorAll('.filters button'),products=document.querySelectorAll('.product');
+filters.forEach(btn=>btn.addEventListener('click',()=>{filters.forEach(x=>x.classList.remove('active'));btn.classList.add('active');const f=btn.dataset.filter;products.forEach(p=>p.classList.toggle('hidden',f!=='all'&&p.dataset.category!==f))}));
+const header=document.querySelector('.header'),menu=document.querySelector('.menu');
+menu?.addEventListener('click',()=>{header.classList.toggle('open')});
+document.querySelectorAll('.header nav a').forEach(a=>a.addEventListener('click',()=>header.classList.remove('open')));
+const pointer=document.querySelector('.pointer');
+window.addEventListener('pointermove',e=>{if(pointer){pointer.style.left=e.clientX+'px';pointer.style.top=e.clientY+'px'}});
+const stage=document.querySelector('.stage'),deck=document.querySelector('.deck');
+if(stage&&deck&&matchMedia('(pointer:fine)').matches){
+stage.addEventListener('pointermove',e=>{const r=stage.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;deck.style.transform=`translate(calc(-50% + ${x*18}px),calc(-50% + ${y*12}px)) rotateY(${x*3}deg) rotateX(${y*-3}deg)`});
+stage.addEventListener('pointerleave',()=>deck.style.transform='translate(-50%,-50%)');
 }
-
-document.querySelectorAll('a[href^="#"]').forEach((link) => {
-  link.addEventListener('click', (event) => {
-    const target = document.querySelector(link.getAttribute('href'));
-    if (!target) return;
-    event.preventDefault();
-    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
-  });
-});
+document.querySelectorAll('a[href^="#"]').forEach(a=>a.addEventListener('click',e=>{const t=document.querySelector(a.getAttribute('href'));if(t){e.preventDefault();t.scrollIntoView({behavior:'smooth'})}}));
