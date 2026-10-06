@@ -467,3 +467,23 @@ body.is-ready>footer{
     animation:none !important;
   }
 }
+
+
+/* FINAL: no blur, no cinematic overlay, normal document scrolling */
+html, body { overflow-x:hidden !important; overflow-y:auto !important; height:auto !important; min-height:100%; filter:none !important; -webkit-filter:none !important; }
+body, body.is-booting, body.is-ready,
+body.is-booting > main, body.is-booting > header, body.is-booting > footer,
+body.is-ready > main, body.is-ready > header, body.is-ready > footer {
+  filter:none !important; -webkit-filter:none !important; transform:none !important; opacity:1 !important;
+}
+.page-intro { display:none !important; filter:none !important; -webkit-filter:none !important; animation:none !important; }
+.intro-word,.intro-line,.intro-status,.intro-grid { filter:none !important; -webkit-filter:none !important; animation:none !important; }
+.reveal,.reveal.visible,.reveal.revealed,html.cinematic-ready .reveal,html.cinematic-ready .reveal.revealed {
+  opacity:1 !important; visibility:visible !important; transform:none !important; filter:none !important;
+  -webkit-filter:none !important; clip-path:none !important; animation:none !important; transition:none !important;
+}
+@media(max-width:600px){
+  html,body { overflow-x:hidden !important; overflow-y:auto !important; height:auto !important; }
+  main#top { contain:none !important; overflow-x:hidden !important; overflow-y:visible !important; }
+  .opening,.opening-object,.idea,.last-call { clip-path:none !important; }
+}
