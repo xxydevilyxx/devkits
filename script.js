@@ -5,12 +5,8 @@
 
   const boot = () => {
   document.documentElement.classList.add('cinematic-ready');
-
-  // Keep the opening state visible long enough to make the blur/zoom unmistakable.
-  window.setTimeout(() => {
-    document.body.classList.remove('is-booting');
-    document.body.classList.add('is-ready');
-  }, 1050);
+  document.body.classList.remove('is-booting');
+  document.body.classList.add('is-ready');
 };
 
 if (document.readyState === 'loading') {
@@ -24,14 +20,10 @@ const revealElements = document.querySelectorAll('.reveal');
 const revealObserver = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
     if (!entry.isIntersecting) return;
-
     entry.target.classList.add('revealed');
     revealObserver.unobserve(entry.target);
   });
-}, {
-  threshold: 0.08,
-  rootMargin: '0px 0px -12% 0px'
-});
+}, { threshold: 0.08, rootMargin: '0px 0px -12% 0px' });
 
 revealElements.forEach((el, i) => {
   el.style.animationDelay = Math.min(i * 80, 320) + 'ms';
