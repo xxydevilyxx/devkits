@@ -1,3 +1,15 @@
+const boot = () => {
+  requestAnimationFrame(() => {
+    document.body.classList.remove('is-booting');
+    document.body.classList.add('is-ready');
+  });
+};
+if (document.readyState === 'loading') {
+  window.addEventListener('load', boot, { once: true });
+} else {
+  boot();
+}
+
 const observer = new IntersectionObserver((entries) => {
   entries.forEach((entry) => {
     if (entry.isIntersecting) {
