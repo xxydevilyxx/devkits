@@ -228,3 +228,95 @@ body{
     font-size:clamp(58px,16vw,105px);
   }
 }
+
+
+/* iPhone / narrow viewport hard lock */
+@media(max-width:600px){
+  html,body{
+    width:100vw !important;
+    max-width:100vw !important;
+    min-width:0 !important;
+    overflow-x:hidden !important;
+    position:relative;
+  }
+
+  main#top{
+    width:100vw !important;
+    max-width:100vw !important;
+    min-width:0 !important;
+    overflow-x:hidden !important;
+  }
+
+  .opening{
+    box-sizing:border-box !important;
+    width:100vw !important;
+    max-width:100vw !important;
+    min-width:0 !important;
+    padding:110px 17px 40px !important;
+    overflow:hidden !important;
+    display:block !important;
+  }
+
+  .opening-main{
+    box-sizing:border-box !important;
+    width:100% !important;
+    max-width:100% !important;
+    min-width:0 !important;
+    margin:0 !important;
+    padding:0 !important;
+  }
+
+  .opening h1{
+    box-sizing:border-box !important;
+    display:block !important;
+    width:100% !important;
+    max-width:100% !important;
+    min-width:0 !important;
+    font-size:12.5vw !important;
+    line-height:.8 !important;
+    letter-spacing:-.075em !important;
+    white-space:normal !important;
+    overflow:hidden !important;
+  }
+
+  .opening h1 span,
+  .opening h1 em{
+    max-width:100% !important;
+  }
+
+  .opening-bottom{
+    box-sizing:border-box !important;
+    width:100% !important;
+    max-width:100% !important;
+    min-width:0 !important;
+  }
+
+  .opening-object{
+    box-sizing:border-box !important;
+    width:300px !important;
+    max-width:300px !important;
+    right:-35px !important;
+    overflow:visible !important;
+  }
+
+  .object-card{
+    width:300px !important;
+    max-width:300px !important;
+  }
+
+  .orbit-one{width:300px !important;height:300px !important}
+  .orbit-two{width:360px !important;height:360px !important;left:-25px !important}
+
+  .manifesto-strip,
+  .archive,
+  .idea,
+  .method,
+  .last-call,
+  footer{
+    width:100vw !important;
+    max-width:100vw !important;
+    min-width:0 !important;
+    box-sizing:border-box !important;
+    overflow-x:hidden !important;
+  }
+}
