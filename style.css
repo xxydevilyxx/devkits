@@ -523,3 +523,22 @@ html body .reveal.revealed {
   animation: none !important;
   transition: none !important;
 }
+
+
+/* HARD RESET: no visual blur anywhere in the page content */
+html, body, body *, main, main * {
+  filter: none !important;
+  -webkit-filter: none !important;
+}
+.page-intro { display:none !important; }
+body.is-booting > main,
+body.is-booting > header,
+body.is-booting > footer,
+body.is-ready > main,
+body.is-ready > header,
+body.is-ready > footer {
+  opacity: 1 !important;
+  transform: none !important;
+  filter: none !important;
+  -webkit-filter: none !important;
+}
